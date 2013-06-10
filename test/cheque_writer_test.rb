@@ -12,7 +12,8 @@ class ChequeWriterTest < Test::Unit::TestCase
   end
 
 
-  def test_fail
-    fail('Not implemented')
+  def test_convert_number
+    conv = ChequeWriter.new
+    assert_equal("cent trente-quatre Euros 60 cents ",conv.convert(134.60))
   end
 end

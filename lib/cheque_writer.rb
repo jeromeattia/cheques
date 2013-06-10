@@ -3,11 +3,9 @@ require 'prawn'
 
 class ChequeWriter
 
-
   def convert(number)
     str =  I18n.with_locale(:fr) { number.floor.to_words }
     str = str + ' Euros '  +  (((number - number.to_int).round 2)*100).to_int.to_s + ' cents '
-
   end
 
   def pad_with_stars(string, line_width)
