@@ -1,5 +1,7 @@
 require 'numbers_and_words'
 require 'prawn'
+require 'prawn/measurements'
+require "prawn/measurement_extensions"
 require 'date'
 require_relative 'cheque'
 
@@ -22,7 +24,7 @@ class ChequeWriter
   end
 
   def generate_pdf(str)
-    pdf = Prawn::Document.new
+    pdf = Prawn::Document.new(:page_size => [175.send(:mm), 80.mm])
     pdf.draw_text str  , at: self.cheque.get_place_of_number
     pdf.draw_text self.beneficiaire , at: self.cheque.get_place_beneficiaire
     pdf.draw_text self.cheque.get_ville , at: self.cheque.get_place_ville
