@@ -32,7 +32,7 @@ class ChequeWriter
 end
 
 cic = Cheque.new('CIC')
-conv = ChequeWriter.new(cic,134.60,'carrefour' )
+conv = ChequeWriter.new(cic,28.95,'Tresor Public' )
 
 puts str = conv.convert
 puts str = conv.pad_with_stars(str, 50)
