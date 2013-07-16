@@ -17,6 +17,6 @@ Puis generate_pdf écrit le chèque prêt à imprimer.
 
 mon_cheque.generate_pdf
 
-Le projet n'est pas terminé, il fauut placer précisément les items sur le chèque.
+Le projet n'est pas terminé, il faut placer précisément les items sur le chèque.
 Il faudrait effectivement faire un programme en ligne de commande qui accepte les arguments (p ex thor)
 voire ultime avatar: un GUI !
