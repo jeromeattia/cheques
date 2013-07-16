@@ -18,17 +18,19 @@ class ChequeWriter
   def convert
     str =  I18n.with_locale(:fr) { self.amount.floor.to_words }
     str = str + ' Euros '  +  (((self.amount - self.amount.to_int).round 2)*100).to_int.to_s + ' cents '
+    self.pad_with_stars(str,50)
   end
 
   def pad_with_stars(string, line_width)
      string.ljust(line_width,'*')
   end
 
-  def generate_pdf(str)
+  def generate_pdf
+
     pdf = Prawn::Document.new(:page_size => [175.send(:mm), 80.mm])
     pdf.stroke_axis
-    pdf.draw_text str  , at: self.cheque.get_place_of_number
-    pdf.draw_text self.beneficiaire , at: self.cheque.get_place_beneficiaire
+    pdf.draw_text self.convert          , at: self.cheque.get_place_of_number
+    pdf.draw_text self.beneficiaire     , at: self.cheque.get_place_beneficiaire
     pdf.draw_text self.cheque.get_ville , at: self.cheque.get_place_ville
     pdf.draw_text DateTime.now.strftime("%d/%m/%Y") , at: self.cheque.get_place_of_date
     pdf.render_file "cheque.pdf"
@@ -38,7 +40,5 @@ end
 cic = Cheque.new('CIC')
 conv = ChequeWriter.new(cic,28.95,'Tresor Public' )
 
-puts str = conv.convert
-puts str = conv.pad_with_stars(str, 50)
-conv.generate_pdf(str)
+conv.generate_pdf
 
